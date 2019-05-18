@@ -13,5 +13,5 @@ import java.time.Month;
  * @author Guilherme Couto
  */
 public interface ZodiacSign extends Remote{
-    public String calculateSign(int dia,Month mes)throws RemoteException;
+    public String calculateSign(int dia,String mes)throws RemoteException;
 }

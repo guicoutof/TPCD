@@ -21,34 +21,34 @@ public class ZodiacSignImpl extends UnicastRemoteObject implements ZodiacSign{
         super();
     }
     
-    public String calculateSign(int dia,Month mes) throws RemoteException{
+    public String calculateSign(int dia,String mes) throws RemoteException{
         
         int day = dia;
 //        mes = mes.toLowerCase();
         
-        if((mes.equals(Month.JANUARY) && (day>20)) || (mes.equals(Month.FEBRUARY) && (day<18))){
+        if((mes.equals("janeiro") && (day>20)) || (mes.equals("fevereiro") && (day<18))){
             return "Aquario";
-        }else if((mes.equals(Month.FEBRUARY) && (day>19)) || (mes.equals(Month.MARCH) && (day<20))){
+        }else if((mes.equals("fevereiro") && (day>19)) || (mes.equals("marco") && (day<20))){
             return "Peixes";
-        }else if((mes.equals(Month.MARCH) && (day>21)) || (mes.equals(Month.APRIL) && (day<19))){
+        }else if((mes.equals("marco") && (day>21)) || (mes.equals("abril") && (day<19))){
             return "Aries";
-        }else if((mes.equals(Month.APRIL) && (day>20)) || (mes.equals(Month.MAY) && (day<20))){
+        }else if((mes.equals("abril") && (day>20)) || (mes.equals("maio") && (day<20))){
             return "Touro";
-        }else if((mes.equals(Month.MAY) && (day>21)) || (mes.equals(Month.JUNE) && (day<20))){
+        }else if((mes.equals("maio") && (day>21)) || (mes.equals("junho") && (day<20))){
             return "Gemeos";
-        }else if((mes.equals(Month.JUNE) && (day>21)) || (mes.equals(Month.JULY) && (day<22))){
+        }else if((mes.equals("junho") && (day>21)) || (mes.equals("julho") && (day<22))){
             return "Cancer";
-        }else if((mes.equals(Month.JULY) && (day>23)) || (mes.equals(Month.AUGUST) && (day<22))){
+        }else if((mes.equals("julho") && (day>23)) || (mes.equals("agosto") && (day<22))){
             return "Leao";
-        }else if((mes.equals(Month.AUGUST) && (day>23)) || (mes.equals(Month.SEPTEMBER) && (day<22))){
+        }else if((mes.equals("agosto") && (day>23)) || (mes.equals("setembro") && (day<22))){
             return "Virgem";
-        }else if((mes.equals(Month.SEPTEMBER) && (day>23)) || (mes.equals(Month.OCTOBER) && (day<22))){
+        }else if((mes.equals("setembro") && (day>23)) || (mes.equals("outubro") && (day<22))){
             return "Libra";
-        }else if((mes.equals(Month.OCTOBER) && (day>23)) || (mes.equals(Month.NOVEMBER) && (day<21))){
+        }else if((mes.equals("outubro") && (day>23)) || (mes.equals("novembro") && (day<21))){
             return "Escorpiao";
-        }else if((mes.equals(Month.NOVEMBER) && (day>22)) || (mes.equals(Month.DECEMBER) && (day<21))){
+        }else if((mes.equals("novembro") && (day>22)) || (mes.equals("dezembro") && (day<21))){
             return "Sagitario";
-        }else if((mes.equals(Month.DECEMBER) && (day>22)) || (mes.equals(Month.JANUARY) && (day<19))){
+        }else if((mes.equals("dezembro") && (day>22)) || (mes.equals("janeiro") && (day<19))){
             return "Capricornio";
         }else 
             return "Signo não encontrado";
