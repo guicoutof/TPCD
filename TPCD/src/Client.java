@@ -1,6 +1,8 @@
 
 import service1.ZodiacSign;
 import java.rmi.Naming;
+import service2.ChineseSign;
+import service3.EjcompBirthday;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,6 +20,10 @@ public class Client {
         try {
             ZodiacSign z = (ZodiacSign)
                 Naming.lookup("rmi://localhost:1099/ZodiacService");
+            ChineseSign c = (ChineseSign)
+                Naming.lookup("rmi://localhost:1099/ChineseService");
+            EjcompBirthday e = (EjcompBirthday)
+                Naming.lookup("rmi://localhost:1099/EjcompService");
 //            System.out.println(m.lerMensagem());
 //            m.calculateSign("Hello World!");
         } catch (Exception e) {
