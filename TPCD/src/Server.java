@@ -3,24 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import service1.ZodiacSignImpl;
+import service1.ZodiacSign;
 import java.rmi.Naming;
 /**
  *
  * @author Guilherme Couto
  */
-public class MensageiroServer {
+public class Server {
     
-    public MensageiroServer(){
+    public Server(){
         try {
-            Mensageiro m = new MensageiroImpl();
-            Naming.rebind("rmi://localhost:1099/MensageiroService", m);
+            ZodiacSign z = new ZodiacSignImpl();
+            Naming.rebind("rmi://localhost:1099/ZodiacService", z);
         } catch (Exception e) {
             System.out.println("Trouble: "+ e);
         }
     }
     
     public static void main(String[] args){
-        new MensageiroServer();
+        new Server();
     }
     
 }

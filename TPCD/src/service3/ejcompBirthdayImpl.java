@@ -1,4 +1,7 @@
+package service3;
 
+
+import service1.ZodiacSign;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -12,18 +15,16 @@ import java.rmi.server.UnicastRemoteObject;
  *
  * @author Guilherme Couto
  */
-public class MensageiroImpl extends UnicastRemoteObject implements Mensageiro{
+public class ejcompBirthdayImpl extends UnicastRemoteObject implements ejcompBirthday{
     
-    public MensageiroImpl() throws RemoteException{
+    public ejcompBirthdayImpl() throws RemoteException{
         super();
     }
     
-    public void enviarMensagem(String msg) throws RemoteException{
-        System.out.println(msg);
+    public void calculateSign(String dia,String mes,String ano) throws RemoteException{
+        System.out.println("Couto");
     }
     
-    public String lerMensagem() throws RemoteException{
-        return "This is not a Hello World! message";
-    }
+
     
 }

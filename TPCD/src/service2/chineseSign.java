@@ -1,3 +1,5 @@
+package service2;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +11,6 @@ import java.rmi.RemoteException;
  *
  * @author Guilherme Couto
  */
-public interface Mensageiro extends Remote{
-    public void enviarMensagem(String msg)throws RemoteException;
-    public String lerMensagem() throws RemoteException;
+public interface chineseSign extends Remote{
+    public String calculateSign(String ano)throws RemoteException;
 }

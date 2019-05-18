@@ -1,4 +1,5 @@
 
+import service1.ZodiacSign;
 import java.rmi.Naming;
 
 /*
@@ -11,14 +12,14 @@ import java.rmi.Naming;
  *
  * @author Guilherme Couto
  */
-public class MensageiroClient {
+public class Client {
     
     public static void main(String args[]){
         try {
-            Mensageiro m = (Mensageiro)
-                Naming.lookup("rmi://localhost:1099/MensageiroService");
-            System.out.println(m.lerMensagem());
-            m.enviarMensagem("Hello World!");
+            ZodiacSign z = (ZodiacSign)
+                Naming.lookup("rmi://localhost:1099/ZodiacService");
+//            System.out.println(m.lerMensagem());
+//            m.calculateSign("Hello World!");
         } catch (Exception e) {
             System.out.println();
             System.out.println("MalformedURLException: "+ e.toString());
