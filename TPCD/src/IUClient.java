@@ -1,10 +1,7 @@
 
 import java.rmi.Naming;
 import javax.swing.JOptionPane;
-import service1.ZodiacSign;
-import service2.ChineseSign;
-import service2.ChineseSignImpl;
-import service3.EjcompBirthday;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -166,7 +163,7 @@ public class IUClient extends javax.swing.JFrame {
         year = jYear.getText();
         if(year!=""){
             try{
-                ChineseSign c = (ChineseSign) Naming.lookup("rmi://localhost:1099/ChineseService");
+                ChineseSign c = (ChineseSign) Naming.lookup("rmi://localhost:1098/ChineseService");
                 JOptionPane.showMessageDialog(null,c.calculateSign(year));
             } catch (Exception e) {
                 System.out.println();
@@ -181,7 +178,7 @@ public class IUClient extends javax.swing.JFrame {
         year = jYear.getText();
         if(day!="" && month!="" && year!=""){
             try {
-                EjcompBirthday e = (EjcompBirthday) Naming.lookup("rmi://localhost:1099/EjcompService");
+                EjcompBirthday e = (EjcompBirthday) Naming.lookup("rmi://localhost:1097/EjcompService");
             } catch (Exception e) {
                 System.out.println();
                 System.out.println("MalformedURLException: "+ e.toString());

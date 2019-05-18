@@ -1,7 +1,7 @@
-package service2;
 
 
-import service1.ZodiacSign;
+
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
