@@ -30,12 +30,14 @@ public class Cliente {
         outTo = new DataOutputStream(clientSocket.getOutputStream()); 
         inFrom = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         
-        System.out.println("Type a message to Distribuidor: ");
+        
         
         while(true){
             do{
-                //primeiro envio
-
+                System.out.println("Escolha seu servico: ");
+                sentence = keyboard.readLine(); 
+                outTo.writeBytes(sentence + '\n');
+                
                 sentence = inFrom.readLine();
                 System.out.println("Message received from TCPC: " + sentence);
             
