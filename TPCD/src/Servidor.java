@@ -50,26 +50,23 @@ class Connection extends Thread {
 	}
 	public void run(){
 		try {			                 // an echo server
-                    DatagramSocket S_Socket = new DatagramSocket(10001); 
-                    InetAddress IPAddress = InetAddress.getByName("localhost"); 
                     byte[] sendData = new byte[1024]; 
                     while(true){
-                        String data = in.readUTF();	                  // read a line of data from the stream
-                           //ler o pacote
-                            //out.writeUTF(data);
+                        String data = in.readUTF();
+                        String[] argumentos = data.split(" ");
+                        
+                        switch(Integer.valueOf(argumentos[0])){
+                            case 1:
+                                
+                                break;
+                            case 2:
+                                
+                                break;
+                            case 3:
+                                
+                                break;
+                        }
 
-                                    // UDP
-
-
-                        sendData = data.getBytes();
-                        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 	10002); 
-                        S_Socket.send(sendPacket);
-
-                        sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 	10003);
-                        S_Socket.send(sendPacket);
-
-                        sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 	10004);
-                        S_Socket.send(sendPacket);
                     }
 		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
 		} catch(IOException e) {System.out.println("readline:"+e.getMessage());
