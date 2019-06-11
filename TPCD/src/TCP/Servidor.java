@@ -1,3 +1,5 @@
+package TCP;
+
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -45,6 +47,7 @@ class Connection extends Thread {
 			System.out.println("Socket in Connection: " + clientSocket);
 			in = new DataInputStream( clientSocket.getInputStream());
 			out = new DataOutputStream( clientSocket.getOutputStream());
+                        //rmi lookup
 			this.start();
 		} catch(IOException e) {System.out.println("Connection:"+e.getMessage());}
 	}
