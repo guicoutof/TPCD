@@ -22,24 +22,20 @@ import java.net.Socket;
 public class Cliente {
     public static void main(String[] args) throws IOException{
         String sentence;
+        DataOutputStream outTo;
         BufferedReader inFrom;
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-        DataOutputStream outTo;
         
-        System.out.print("Waiting for connection ... " + '\n');
-        ServerSocket welcomeSocket = new ServerSocket(); 
-
-        Socket connectionSocket = welcomeSocket.accept();
-        System.out.println("Connection accepted, Socket: " + connectionSocket + '\n'); 
-
-        welcomeSocket.close();
+        Socket clientSocket = new Socket("localhost", 10000);
+        outTo = new DataOutputStream(clientSocket.getOutputStream()); 
+        inFrom = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         
-        outTo = new DataOutputStream(connectionSocket.getOutputStream()); 
+        System.out.println("Type a message to Distribuidor: ");
         
         while(true){
             do{
                 //primeiro envio
-                inFrom = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+
                 sentence = inFrom.readLine();
                 System.out.println("Message received from TCPC: " + sentence);
             
