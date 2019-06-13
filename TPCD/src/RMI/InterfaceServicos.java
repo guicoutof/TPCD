@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 
 /**
  *
- * @author gui_c
+ * @author Giulia & Guilherme 
  */
 public interface InterfaceServicos extends Remote{
     

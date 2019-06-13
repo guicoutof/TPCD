@@ -12,7 +12,7 @@ import java.rmi.registry.Registry;
 
 /**
  *
- * @author gui_c
+ * @author Giulia & Giulherme
  */
 public class ServidorRMI {
     

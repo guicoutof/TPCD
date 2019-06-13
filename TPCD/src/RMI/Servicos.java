@@ -11,7 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
- * @author gui_c
+ * @author Giulia & Giulherme
  */
 public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
 

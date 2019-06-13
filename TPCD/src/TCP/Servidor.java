@@ -6,10 +6,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.Naming;
@@ -23,7 +19,7 @@ import java.rmi.NotBoundException;
 
 /**
  *
- * @author gui_c
+ * @author Giulia & Guilherme
  */
 public class Servidor {
     public static void main(String[] args) throws IOException, NotBoundException {

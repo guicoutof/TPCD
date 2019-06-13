@@ -2,13 +2,10 @@ package TCP;
 
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 /*
@@ -19,18 +16,18 @@ import java.net.Socket;
 
 /**
  *
- * @author Giulia
+ * @author Giulia & Guilherme
  */
 public class Cliente {
     public static void main(String[] args) throws IOException{
         String sentence;
         DataOutputStream outTo;
-        BufferedReader inFrom;
+        DataInputStream inFrom;
         BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
         
         Socket clientSocket = new Socket("localhost", 10000);
         outTo = new DataOutputStream(clientSocket.getOutputStream()); 
-        inFrom = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        inFrom = new DataInputStream(clientSocket.getInputStream());
         
         
         
@@ -38,14 +35,13 @@ public class Cliente {
             do{
                 System.out.println("Escolha seu servico: ");
                 sentence = keyboard.readLine(); 
-                outTo.writeBytes(sentence + '\n');
+                outTo.writeUTF(sentence + '\n');
+               
+                sentence = inFrom.readUTF();
+                System.out.println(sentence);
                 
-                sentence = inFrom.readLine();
-                System.out.println("Message received from TCPC: " + sentence);
-            
-                System.out.println("continue: ");
+                System.out.println("Deseja executar novamente? s | n : ");
                 sentence = keyboard.readLine(); 
-                outTo.writeBytes(sentence + '\n'); 
             }while(sentence.equals('s'));
             
         }
