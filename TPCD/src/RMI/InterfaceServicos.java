@@ -15,7 +15,7 @@ import java.rmi.RemoteException;
  */
 public interface InterfaceServicos extends Remote{
     
-    String signo(String Data) throws RemoteException;
+    String signo(int dia,int mes) throws RemoteException;
     String imc(int altura,float peso) throws RemoteException;
     float impostoRenda(float base,int nDp,boolean inss) throws RemoteException;
 //

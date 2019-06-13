@@ -7,15 +7,20 @@
 package RMI;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author gui_c
  */
-public class Servicos implements InterfaceServicos{
+public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
 
+    public Servicos () throws RemoteException{
+        super();
+    }
+    
     @Override
-    public String signo(String Data) throws RemoteException {
+    public String signo(int dia, int mes) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
