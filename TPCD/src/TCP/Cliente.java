@@ -1,11 +1,9 @@
 package TCP;
 
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 import javax.swing.JOptionPane;
 
@@ -21,7 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class Cliente {
     public static void main(String[] args) throws IOException{
-        String sentence;
         DataOutputStream outTo;
         DataInputStream inFrom;
         
@@ -31,10 +28,11 @@ public class Cliente {
         
         Object[] selectionValues = { "Signo", "IMC", "Imposto de Renda" };
         String initialSelection = "Signo";
-        int aux;
         
+        int aux;
         do{
-            sentence = "";
+            String sentence = "";
+            
             Object selection = JOptionPane.showInputDialog(null, "Qual servico deseja realizar ?","Trabalho CD", JOptionPane.QUESTION_MESSAGE, null, selectionValues, initialSelection);
 
             if(selection != null && selection.equals("Signo")){
@@ -59,8 +57,8 @@ public class Cliente {
 
                 sentence = inFrom.readUTF();
                 JOptionPane.showMessageDialog(null, sentence);
-
             }
+            
             aux = JOptionPane.showConfirmDialog(null,"Deseja executar novamente ?");
 
         }while(aux == 0);

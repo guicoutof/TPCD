@@ -24,7 +24,7 @@ import java.rmi.NotBoundException;
 public class Servidor {
     public static void main(String[] args) throws IOException, NotBoundException {
         try{
-            int serverPort = 10000; // the server port
+            int serverPort = 10000; //porta do servidor
             ServerSocket listenSocket = new ServerSocket(serverPort);
             System.out.println("ServerSocket: " + listenSocket);
             while(true) {
@@ -42,36 +42,37 @@ class Connection extends Thread {
 	Socket clientSocket;
         InterfaceServicos servicos;
         
-	public Connection (Socket aClientSocket) throws NotBoundException {
+	public Connection (Socket cSocket) throws NotBoundException {
 		try {
-			clientSocket = aClientSocket;
+			clientSocket = cSocket;
 			System.out.println("Socket in Connection: " + clientSocket);
 			in = new DataInputStream( clientSocket.getInputStream());
 			out = new DataOutputStream( clientSocket.getOutputStream());
-                        //rmi lookup
-                        System.out.println(" > IP CONECTADO: "+aClientSocket.getLocalAddress());
+
+                        System.out.println(" > IP CONECTADO: "+clientSocket.getLocalAddress());
                         servicos = (InterfaceServicos) Naming.lookup("rmi://localhost:1099/RMI");
 			this.start();
-		} catch(IOException e) {System.out.println("Connection:"+e.getMessage());}
+		} catch(IOException e) {
+                    System.out.println("Connection:"+e.getMessage());
+                }
 	}
 	public void run(){
-		try {			                 // an echo server
-                    byte[] sendData = new byte[1024]; 
+		try {			                 
                     while(true){
                         String data = in.readUTF();
-                        String[] argumentos = data.split(" ");
+                        String[] args = data.split(" ");
                         String resposta = ""; 
                         
-                        switch(Integer.valueOf(argumentos[0])){
-                            case 1:
-                                String[] params = argumentos[1].split("/");
+                        switch(Integer.valueOf(args[0])){
+                            case 1://servico de identificacao astrologica
+                                String[] params = args[1].split("/");
                                 resposta += servicos.signo(Integer.valueOf(params[0]),Integer.valueOf(params[1]));
                                 break;
-                            case 2:
-                                resposta += servicos.imc(Float.valueOf(argumentos[1]),Float.valueOf(argumentos[2]));
+                            case 2://servico de indice de massa corporal
+                                resposta += servicos.imc(Float.valueOf(args[1]),Float.valueOf(args[2]));
                                 break;
-                            case 3:
-                                resposta += servicos.impostoRenda(Float.valueOf(argumentos[1]),Integer.valueOf(argumentos[2]),Integer.valueOf(argumentos[3]));
+                            case 3:// servico de calculo do imposto de renda retido na fonte
+                                resposta += servicos.impostoRenda(Float.valueOf(args[1]),Integer.valueOf(args[2]),Integer.valueOf(args[3]));
                                 break;
                             default:
                                 resposta += "Servico nao encontrado";
@@ -80,10 +81,15 @@ class Connection extends Thread {
                         out.writeUTF("> " + resposta + "\n");    //resposta ao cliente
 
                     }
-		}catch (EOFException e){System.out.println("EOF:"+e.getMessage());
-		} catch(IOException e) {System.out.println("readline:"+e.getMessage());
-		} finally{ try {clientSocket.close();}catch (IOException e){/*close failed*/}}
-                
-
+		}catch (EOFException e){
+                    System.out.println("EOF:"+e.getMessage());
+		} catch(IOException e) {
+                    System.out.println("readline:"+e.getMessage());
+		} finally{
+                    try {
+                        clientSocket.close();
+                    }catch (IOException e){/*close failed*/
+                    }
+                }
 	}
 }

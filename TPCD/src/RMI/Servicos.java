@@ -8,19 +8,26 @@ package RMI;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.DecimalFormat;
 
 /**
  *
- * @author Giulia & Giulherme
+ * @author Giulia & Guilherme
  */
 public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
-
+    DecimalFormat formatter = new DecimalFormat("#.00");
+    
     public Servicos () throws RemoteException{
         super();
     }
     
+    
+    //https://www.astrocentro.com.br/blog/astrologia/datas-cada-signo/
     @Override
     public String signo(int dia, int mes) throws RemoteException {
+        
+        if(dia > 31 || dia < 1 || mes < 1 || mes > 12)return "Data invalida";
+        
         if((dia >= 21 && mes == 3) || (dia <= 20 && mes == 4)){
             return "Aries";
         }else if((dia >= 21 && mes == 4) || (dia <= 20 && mes == 5)){
@@ -50,32 +57,38 @@ public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
         
     }
 
+    
+    //https://www.minhavida.com.br/alimentacao/tudo-sobre/32159-imc
     @Override
     public String imc(float altura,float peso) throws RemoteException {
         float imc = peso/(altura*altura);
+        
         if(imc < 18.5f){
-            return imc + " : abaixo do peso";
+            return formatter.format(imc) + " : abaixo do peso";
         }else if(imc >= 18.5f && imc < 25){
-            return imc + " : peso normal";
+            return formatter.format(imc) + " : peso normal";
         }else if(imc >= 25 && imc < 30){
-            return imc + " : sobrepeso";
+            return formatter.format(imc) + " : sobrepeso";
         }else if(imc >= 30 && imc < 35){
-            return imc + " : obesidade grau 1";
+            return formatter.format(imc) + " : obesidade grau 1";
         }else if(imc >= 35 && imc < 40){
-            return imc + " : obesidade grau 2";
+            return formatter.format(imc) + " : obesidade grau 2";
         }else if(imc >= 40){
-            return imc + " : obesidade grau 3";
+            return formatter.format(imc) + " : obesidade grau 3";
         }
         return "Dados invalidos";
     }
 
+    
+    //https://artigos.toroinvestimentos.com.br/irpf/tabela-imposto-de-renda-2019-aliquota
     @Override
     public String impostoRenda(float base,int nDp,int inss) throws RemoteException {
         float aliquota = 1f;
         float descInss;
         float deducao = 0f;
+        System.out.println(base + " "+ nDp + " "+ inss);
         if(base < 1903.98f){
-            return "IR retido na fonte : R$ " + 0;
+            return "IR retido na fonte : R$ " + 0f;
         }else{
             if(inss==0){
                  descInss = base*0.12f;
@@ -92,7 +105,7 @@ public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
                 aliquota = 0.225f;
                 deducao = 636.13f;
             }else if(base > 4664.68f){
-                aliquota = 27.5f;
+                aliquota = 0.275f;
                 deducao = 869.36f;
             }
         }
@@ -100,10 +113,10 @@ public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
         float IR = ((base-(nDp*2275.08f)-descInss)*aliquota)-deducao;//imposto de renda retido na fonte
         
         if(IR>=0)
-            return "IR retido na fonte : R$ " + IR;
+            return "IR retido na fonte : R$ " + formatter.format(IR);
         else
-            return "IR retido na fonte : R$ " + 0;
-         
+            return "IR retido na fonte : R$ " + 0f;
+        
     }
     
 }
