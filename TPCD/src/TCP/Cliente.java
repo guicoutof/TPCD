@@ -66,6 +66,6 @@ public class Cliente {
         
         
 
-        //connectionSocket.close();
+        connectionSocket.close();
     }
 }
