@@ -68,10 +68,10 @@ class Connection extends Thread {
                                 resposta += servicos.signo(Integer.valueOf(params[0]),Integer.valueOf(params[1]));
                                 break;
                             case 2:
-                                resposta += servicos.imc(Integer.valueOf(argumentos[1]),Float.valueOf(argumentos[2]));
+                                resposta += servicos.imc(Float.valueOf(argumentos[1]),Float.valueOf(argumentos[2]));
                                 break;
                             case 3:
-                                resposta += servicos.impostoRenda(Float.valueOf(argumentos[1]),Integer.valueOf(argumentos[2]),Boolean.valueOf(argumentos[3]));
+                                resposta += servicos.impostoRenda(Float.valueOf(argumentos[1]),Integer.valueOf(argumentos[2]),Integer.valueOf(argumentos[3]));
                                 break;
                             default:
                                 resposta += "Servico nao encontrado";

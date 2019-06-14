@@ -25,7 +25,7 @@ public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
     }
 
     @Override
-    public String imc(int altura,float peso) throws RemoteException {
+    public String imc(float altura,float peso) throws RemoteException {
         float imc = peso/(altura*altura);
         if(imc < 18.5f){
             return imc + " : abaixo do peso";
@@ -44,14 +44,14 @@ public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
     }
 
     @Override
-    public float impostoRenda(float base,int nDp,boolean inss) throws RemoteException {
+    public float impostoRenda(float base,int nDp,int inss) throws RemoteException {
         float aliquota = 1f;
         float descInss;
         float deducao = 0f;
         if(base < 1903.98f){
             return 0;
         }else{
-            if(inss){
+            if(inss==0){
                  descInss = base*0.12f;
             }else  descInss = 0f;
             
