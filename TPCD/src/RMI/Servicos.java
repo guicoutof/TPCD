@@ -70,12 +70,12 @@ public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
     }
 
     @Override
-    public float impostoRenda(float base,int nDp,int inss) throws RemoteException {
+    public String impostoRenda(float base,int nDp,int inss) throws RemoteException {
         float aliquota = 1f;
         float descInss;
         float deducao = 0f;
         if(base < 1903.98f){
-            return 0;
+            return "IR retido na fonte : R$ " + 0;
         }else{
             if(inss==0){
                  descInss = base*0.12f;
@@ -100,9 +100,9 @@ public class Servicos extends UnicastRemoteObject implements InterfaceServicos{
         float IR = ((base-(nDp*2275.08f)-descInss)*aliquota)-deducao;//imposto de renda retido na fonte
         
         if(IR>=0)
-            return IR;
+            return "IR retido na fonte : R$ " + IR;
         else
-            return 0;
+            return "IR retido na fonte : R$ " + 0;
          
     }
     
